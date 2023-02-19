@@ -66,13 +66,23 @@ extension HomeDeviceListViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - TableViewDelegate
+extension HomeDeviceListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            return
+        }
+        viewModel.didSelectDevice(section: indexPath.section - 1, indexPath: indexPath.row)
+    }
+}
+
 // MARK: - Setup
 private extension HomeDeviceListViewController {
     func setup() {
         title = NSLocalizedString("home", comment: "")
         view.backgroundColor = .systemGroupedBackground
         
-//        tableView.delegate = self
+        tableView.delegate = self
         tableView.dataSource = self
         
         view.addSubview(tableView)

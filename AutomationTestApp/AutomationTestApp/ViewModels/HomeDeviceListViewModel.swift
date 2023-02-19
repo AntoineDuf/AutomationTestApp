@@ -19,6 +19,11 @@ final class HomeDeviceListViewModel {
             reloadTableViewHandler()
         }
     }
+    var selectedDevice: Deviceable? {
+        didSet {
+            goToNextController()
+        }
+    }
 
     init(homeDevices: [[Deviceable]] = [], dataService: DataService = .init()) {
         self.homeDevices = homeDevices
@@ -40,5 +45,16 @@ final class HomeDeviceListViewModel {
             return 1
         }
         return homeDevices[section - 1].count
+    }
+    func didSelectDevice(section: Int, indexPath: Int) {
+        selectedDevice = homeDevices[section][indexPath]
+    }
+    func goToNextController() {
+        switch selectedDevice {
+        case is Light:
+            coordinator?.startLightSteeringPage(light: selectedDevice as! Light)
+        default:
+            return
+        }
     }
 }
