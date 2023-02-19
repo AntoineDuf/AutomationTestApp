@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol HeaterSteeringDelegate {
+    func updateData(heater: Heater)
+}
+
 class HeaterSteeringPageViewController: UIViewController {
     
     //MARK: - Properties
+    var delegate: HeaterSteeringDelegate!
     var viewModel: HeaterSteeringPageViewModel!
     var steeringView: HeaterSteeringPageView!
 
@@ -23,6 +28,7 @@ class HeaterSteeringPageViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        delegate.updateData(heater: viewModel.heater)
         viewModel.coordinator?.didFinishLightSteeringPage()
     }
 

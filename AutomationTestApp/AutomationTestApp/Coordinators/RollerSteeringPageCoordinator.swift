@@ -11,19 +11,21 @@ final class RollerSteeringPageCoordinator: Coordinator {
     private(set) var childCoordinators: [Coordinator] = []
     private let navigationController: UINavigationController
     private let rollerShutter: RollerShutter
+    private let delegate: UIViewController
 
     var parentCoordinator : HomeDeviceListCoordinator?
 
-    init(navigationController: UINavigationController, rollerShutter: RollerShutter) {
+    init(navigationController: UINavigationController, rollerShutter: RollerShutter, delegate: UIViewController) {
         self.navigationController = navigationController
         self.rollerShutter = rollerShutter
+        self.delegate = delegate
     }
 
     func start() {
         let rollerSteeringPageViewController = RollerSteeringPageViewController()
         let rollerSteeringPageViewModel = RollerSteeringPageViewModel(coordinator: self, rollerShutter: rollerShutter)
         rollerSteeringPageViewController.viewModel = rollerSteeringPageViewModel
-
+        rollerSteeringPageViewController.delegate = delegate as? any RollerSteeringDelegate
         navigationController.pushViewController(rollerSteeringPageViewController, animated: false)
     }
 
@@ -31,3 +33,4 @@ final class RollerSteeringPageCoordinator: Coordinator {
         parentCoordinator?.childDidFinish(self)
     }
 }
+

@@ -9,12 +9,13 @@ import Foundation
 
 final class LightSteeringPageViewModel {
     //MARK: - Properties
+    var coordinator: LightSteeringPageCoordinator?
     var light: Light
     var lightIsOn: Bool {
         light.mode == "ON" ? true : false
     }
 
-    init(light: Light) {
+    init(coordinator: LightSteeringPageCoordinator? = nil, light: Light) {
         self.light = light
     }
 

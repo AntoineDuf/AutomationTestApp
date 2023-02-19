@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol LightSteeringDelegate {
+    func updateData(light: Light)
+}
+
 class LightSteeringPageViewController: UIViewController {
     
     //MARK: - Properties
+    var delegate: LightSteeringDelegate!
     var viewModel: LightSteeringPageViewModel!
     var steeringView: LightSteeringPageView!
     
@@ -24,14 +29,16 @@ class LightSteeringPageViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel.light.intensity = Int(steeringView.rollerSlider.value)
+        delegate.updateData(light: viewModel.light)
+        viewModel.coordinator?.didFinishLightSteeringPage()
     }
     
     private func setSwitch() {
         if viewModel.lightIsOn {
-            self.steeringView.switchButton.setOn(false, animated: false)
+            self.steeringView.switchButton.setOn(true, animated: false)
             return
         }
-        self.steeringView.switchButton.setOn(true, animated: false)
+        self.steeringView.switchButton.setOn(false, animated: false)
     }
     
     @objc func sliderUpdated(mySwitch: UISwitch) {
