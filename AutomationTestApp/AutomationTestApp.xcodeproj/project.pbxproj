@@ -11,6 +11,10 @@
 		71B5C8B329A2A3BD00B850BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C8B229A2A3BD00B850BD /* SceneDelegate.swift */; };
 		71B5C8BA29A2A3C000B850BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71B5C8B929A2A3C000B850BD /* Assets.xcassets */; };
 		71B5C8BD29A2A3C000B850BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71B5C8BB29A2A3C000B850BD /* LaunchScreen.storyboard */; };
+		71B5C8CE29A2A5D500B850BD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C8CD29A2A5D500B850BD /* AppCoordinator.swift */; };
+		71B5C8D029A2A60600B850BD /* HomeDeviceListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C8CF29A2A60600B850BD /* HomeDeviceListCoordinator.swift */; };
+		71B5C8D229A2A68200B850BD /* HomeDeviceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C8D129A2A68200B850BD /* HomeDeviceListViewModel.swift */; };
+		71B5C8D429A2A6A800B850BD /* HomeDeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C8D329A2A6A800B850BD /* HomeDeviceListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,10 @@
 		71B5C8B929A2A3C000B850BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71B5C8BC29A2A3C000B850BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71B5C8BE29A2A3C000B850BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71B5C8CD29A2A5D500B850BD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		71B5C8CF29A2A60600B850BD /* HomeDeviceListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDeviceListCoordinator.swift; sourceTree = "<group>"; };
+		71B5C8D129A2A68200B850BD /* HomeDeviceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDeviceListViewModel.swift; sourceTree = "<group>"; };
+		71B5C8D329A2A6A800B850BD /* HomeDeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDeviceListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +60,8 @@
 		71B5C8AF29A2A3BD00B850BD /* AutomationTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				71B5C8CC29A2A4F100B850BD /* Controllers */,
 				71B5C8CB29A2A4D700B850BD /* Extension */,
+				71B5C8CC29A2A4F100B850BD /* Controllers */,
 				71B5C8CA29A2A4C400B850BD /* ViewModels */,
 				71B5C8C929A2A4B800B850BD /* Coordinators */,
 				71B5C8C829A2A4B100B850BD /* Models */,
@@ -92,6 +100,8 @@
 		71B5C8C929A2A4B800B850BD /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				71B5C8CD29A2A5D500B850BD /* AppCoordinator.swift */,
+				71B5C8CF29A2A60600B850BD /* HomeDeviceListCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -99,6 +109,7 @@
 		71B5C8CA29A2A4C400B850BD /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				71B5C8D129A2A68200B850BD /* HomeDeviceListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -113,6 +124,7 @@
 		71B5C8CC29A2A4F100B850BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				71B5C8D329A2A6A800B850BD /* HomeDeviceListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -187,8 +199,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71B5C8CE29A2A5D500B850BD /* AppCoordinator.swift in Sources */,
+				71B5C8D229A2A68200B850BD /* HomeDeviceListViewModel.swift in Sources */,
 				71B5C8B129A2A3BD00B850BD /* AppDelegate.swift in Sources */,
 				71B5C8B329A2A3BD00B850BD /* SceneDelegate.swift in Sources */,
+				71B5C8D029A2A60600B850BD /* HomeDeviceListCoordinator.swift in Sources */,
+				71B5C8D429A2A6A800B850BD /* HomeDeviceListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
