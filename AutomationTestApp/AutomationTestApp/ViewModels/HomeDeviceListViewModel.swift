@@ -9,4 +9,36 @@ import Foundation
 
 final class HomeDeviceListViewModel {
 
+    //MARK: - Properties
+    var user: User?
+    let dataService: DataService
+    var coordinator: HomeDeviceListCoordinator?
+    var reloadTableViewHandler: () -> Void = {}
+    var homeDevices: [[Deviceable]] {
+        didSet {
+            reloadTableViewHandler()
+        }
+    }
+
+    init(homeDevices: [[Deviceable]] = [], dataService: DataService = .init()) {
+        self.homeDevices = homeDevices
+        self.dataService = dataService
+    }
+
+    //MARK: - Methods
+    func loadData() {
+        user = dataService.getUser()
+        homeDevices = dataService.getDevice() ?? []
+    }
+
+    func sectionCount() -> Int {
+        homeDevices.count
+    }
+
+    func rowCount(section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+        return homeDevices[section - 1].count
+    }
 }
