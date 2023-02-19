@@ -47,6 +47,9 @@
 		71B5C91A29A2D7A100B850BD /* RollerSteeringPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91929A2D7A100B850BD /* RollerSteeringPageCoordinator.swift */; };
 		71B5C91C29A2D7F500B850BD /* RollerSteeringPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91B29A2D7F500B850BD /* RollerSteeringPageViewModel.swift */; };
 		71B5C91E29A2D81500B850BD /* RollerSteeringPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91D29A2D81500B850BD /* RollerSteeringPageViewController.swift */; };
+		71B5C92029A2DD3500B850BD /* HeaterSteeringPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91F29A2DD3500B850BD /* HeaterSteeringPageCoordinator.swift */; };
+		71B5C92229A2DD7600B850BD /* HeaterSteeringPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C92129A2DD7600B850BD /* HeaterSteeringPageViewModel.swift */; };
+		71B5C92429A2DDA200B850BD /* HeaterSteeringPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C92329A2DDA200B850BD /* HeaterSteeringPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +97,9 @@
 		71B5C91929A2D7A100B850BD /* RollerSteeringPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerSteeringPageCoordinator.swift; sourceTree = "<group>"; };
 		71B5C91B29A2D7F500B850BD /* RollerSteeringPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerSteeringPageViewModel.swift; sourceTree = "<group>"; };
 		71B5C91D29A2D81500B850BD /* RollerSteeringPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerSteeringPageViewController.swift; sourceTree = "<group>"; };
+		71B5C91F29A2DD3500B850BD /* HeaterSteeringPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaterSteeringPageCoordinator.swift; sourceTree = "<group>"; };
+		71B5C92129A2DD7600B850BD /* HeaterSteeringPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaterSteeringPageViewModel.swift; sourceTree = "<group>"; };
+		71B5C92329A2DDA200B850BD /* HeaterSteeringPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaterSteeringPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +189,7 @@
 				71B5C8CF29A2A60600B850BD /* HomeDeviceListCoordinator.swift */,
 				71B5C91729A2D18700B850BD /* LightSteeringPageCoordinator.swift */,
 				71B5C91929A2D7A100B850BD /* RollerSteeringPageCoordinator.swift */,
+				71B5C91F29A2DD3500B850BD /* HeaterSteeringPageCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -193,6 +200,7 @@
 				71B5C8D129A2A68200B850BD /* HomeDeviceListViewModel.swift */,
 				71B5C91529A2CF9900B850BD /* LightSteeringPageViewModel.swift */,
 				71B5C91B29A2D7F500B850BD /* RollerSteeringPageViewModel.swift */,
+				71B5C92129A2DD7600B850BD /* HeaterSteeringPageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 				71B5C8D329A2A6A800B850BD /* HomeDeviceListViewController.swift */,
 				71B5C91329A2CF3500B850BD /* LightSteeringPageViewController.swift */,
 				71B5C91D29A2D81500B850BD /* RollerSteeringPageViewController.swift */,
+				71B5C92329A2DDA200B850BD /* HeaterSteeringPageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -342,6 +351,7 @@
 			files = (
 				71B5C91829A2D18700B850BD /* LightSteeringPageCoordinator.swift in Sources */,
 				71B5C8CE29A2A5D500B850BD /* AppCoordinator.swift in Sources */,
+				71B5C92029A2DD3500B850BD /* HeaterSteeringPageCoordinator.swift in Sources */,
 				71B5C8D229A2A68200B850BD /* HomeDeviceListViewModel.swift in Sources */,
 				71B5C91229A2C82900B850BD /* UIView+Ext.swift in Sources */,
 				71B5C8B129A2A3BD00B850BD /* AppDelegate.swift in Sources */,
@@ -352,6 +362,7 @@
 				71B5C8EC29A2B10100B850BD /* UserCell.swift in Sources */,
 				71B5C8EA29A2B0D200B850BD /* HeaterCell.swift in Sources */,
 				71B5C90729A2C6C200B850BD /* NameSteeringPageLabel.swift in Sources */,
+				71B5C92229A2DD7600B850BD /* HeaterSteeringPageViewModel.swift in Sources */,
 				71B5C8DC29A2AC3F00B850BD /* Heater.swift in Sources */,
 				71B5C8F629A2B20000B850BD /* DeviceNameLabel.swift in Sources */,
 				71B5C8DE29A2ADE800B850BD /* DataService.swift in Sources */,
@@ -360,6 +371,7 @@
 				71B5C8E329A2B02500B850BD /* HomeTableView.swift in Sources */,
 				71B5C91E29A2D81500B850BD /* RollerSteeringPageViewController.swift in Sources */,
 				71B5C8F229A2B17200B850BD /* UserImageView.swift in Sources */,
+				71B5C92429A2DDA200B850BD /* HeaterSteeringPageViewController.swift in Sources */,
 				71B5C8F429A2B1D000B850BD /* NSLayoutConstraint+Ext.swift in Sources */,
 				71B5C8F029A2B16600B850BD /* DeviceImageView.swift in Sources */,
 				71B5C8D629A2ABCF00B850BD /* HomeData.swift in Sources */,
