@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  AutomationTestApp
+
+  Created by Antoine Dufayet on 19/02/2023.
+  
+*/
+"home" = "Home";
+"lightingAt" = "lighting at";
+"openedAt" = "opened at";
+"closed" = "closed";
+"opened" = "opened";
+"at" = "at";
+"onAt" = "ON at";
+"on" = "ON";
+"off" = "OFF";
