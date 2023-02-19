@@ -39,6 +39,13 @@ final class HomeDeviceListCoordinator: Coordinator {
         rollerSteeringPageCoordinator.start()
     }
 
+    func startHeaterSteeringPage(heater: Heater) {
+        let heaterSteeringPageCoordinator = HeaterSteeringPageCoordinator(navigationController: navigationController, heater: heater)
+        childCoordinators.append(heaterSteeringPageCoordinator)
+        heaterSteeringPageCoordinator.parentCoordinator = self
+        heaterSteeringPageCoordinator.start()
+    }
+
     func childDidFinish(_ childCoordinator: Coordinator) {
         if let index = childCoordinators.firstIndex(where: { coordinator -> Bool in
             return childCoordinator === coordinator

@@ -57,6 +57,8 @@ final class HomeDeviceListViewModel {
             coordinator?.startLightSteeringPage(light: selectedDevice as! Light)
         case is RollerShutter:
             coordinator?.startRollerSteeringPage(rollerShutter: selectedDevice as! RollerShutter)
+        case is Heater:
+            coordinator?.startHeaterSteeringPage(heater: selectedDevice as! Heater)
         default:
             return
         }
