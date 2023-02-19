@@ -44,6 +44,9 @@
 		71B5C91429A2CF3500B850BD /* LightSteeringPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91329A2CF3500B850BD /* LightSteeringPageViewController.swift */; };
 		71B5C91629A2CF9900B850BD /* LightSteeringPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91529A2CF9900B850BD /* LightSteeringPageViewModel.swift */; };
 		71B5C91829A2D18700B850BD /* LightSteeringPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91729A2D18700B850BD /* LightSteeringPageCoordinator.swift */; };
+		71B5C91A29A2D7A100B850BD /* RollerSteeringPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91929A2D7A100B850BD /* RollerSteeringPageCoordinator.swift */; };
+		71B5C91C29A2D7F500B850BD /* RollerSteeringPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91B29A2D7F500B850BD /* RollerSteeringPageViewModel.swift */; };
+		71B5C91E29A2D81500B850BD /* RollerSteeringPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91D29A2D81500B850BD /* RollerSteeringPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +91,9 @@
 		71B5C91329A2CF3500B850BD /* LightSteeringPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSteeringPageViewController.swift; sourceTree = "<group>"; };
 		71B5C91529A2CF9900B850BD /* LightSteeringPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSteeringPageViewModel.swift; sourceTree = "<group>"; };
 		71B5C91729A2D18700B850BD /* LightSteeringPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSteeringPageCoordinator.swift; sourceTree = "<group>"; };
+		71B5C91929A2D7A100B850BD /* RollerSteeringPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerSteeringPageCoordinator.swift; sourceTree = "<group>"; };
+		71B5C91B29A2D7F500B850BD /* RollerSteeringPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerSteeringPageViewModel.swift; sourceTree = "<group>"; };
+		71B5C91D29A2D81500B850BD /* RollerSteeringPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerSteeringPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +182,7 @@
 				71B5C8CD29A2A5D500B850BD /* AppCoordinator.swift */,
 				71B5C8CF29A2A60600B850BD /* HomeDeviceListCoordinator.swift */,
 				71B5C91729A2D18700B850BD /* LightSteeringPageCoordinator.swift */,
+				71B5C91929A2D7A100B850BD /* RollerSteeringPageCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -185,6 +192,7 @@
 			children = (
 				71B5C8D129A2A68200B850BD /* HomeDeviceListViewModel.swift */,
 				71B5C91529A2CF9900B850BD /* LightSteeringPageViewModel.swift */,
+				71B5C91B29A2D7F500B850BD /* RollerSteeringPageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -204,6 +212,7 @@
 			children = (
 				71B5C8D329A2A6A800B850BD /* HomeDeviceListViewController.swift */,
 				71B5C91329A2CF3500B850BD /* LightSteeringPageViewController.swift */,
+				71B5C91D29A2D81500B850BD /* RollerSteeringPageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -349,15 +358,18 @@
 				71B5C8E829A2B0BF00B850BD /* RollerCell.swift in Sources */,
 				71B5C91029A2C78500B850BD /* HeaterSteeringPageView.swift in Sources */,
 				71B5C8E329A2B02500B850BD /* HomeTableView.swift in Sources */,
+				71B5C91E29A2D81500B850BD /* RollerSteeringPageViewController.swift in Sources */,
 				71B5C8F229A2B17200B850BD /* UserImageView.swift in Sources */,
 				71B5C8F429A2B1D000B850BD /* NSLayoutConstraint+Ext.swift in Sources */,
 				71B5C8F029A2B16600B850BD /* DeviceImageView.swift in Sources */,
 				71B5C8D629A2ABCF00B850BD /* HomeData.swift in Sources */,
+				71B5C91A29A2D7A100B850BD /* RollerSteeringPageCoordinator.swift in Sources */,
 				71B5C8D029A2A60600B850BD /* HomeDeviceListCoordinator.swift in Sources */,
 				71B5C8D829A2AC2100B850BD /* Light.swift in Sources */,
 				71B5C8E629A2B0AB00B850BD /* LightCell.swift in Sources */,
 				71B5C8DA29A2AC3100B850BD /* RollerShutter.swift in Sources */,
 				71B5C91429A2CF3500B850BD /* LightSteeringPageViewController.swift in Sources */,
+				71B5C91C29A2D7F500B850BD /* RollerSteeringPageViewModel.swift in Sources */,
 				71B5C91629A2CF9900B850BD /* LightSteeringPageViewModel.swift in Sources */,
 				71B5C8D429A2A6A800B850BD /* HomeDeviceListViewController.swift in Sources */,
 				71B5C90C29A2C75E00B850BD /* RollerSteeringPageView.swift in Sources */,
