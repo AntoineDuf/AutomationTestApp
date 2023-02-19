@@ -46,13 +46,17 @@ final class HomeDeviceListViewModel {
         }
         return homeDevices[section - 1].count
     }
+
     func didSelectDevice(section: Int, indexPath: Int) {
         selectedDevice = homeDevices[section][indexPath]
     }
+
     func goToNextController() {
         switch selectedDevice {
         case is Light:
             coordinator?.startLightSteeringPage(light: selectedDevice as! Light)
+        case is RollerShutter:
+            coordinator?.startRollerSteeringPage(rollerShutter: selectedDevice as! RollerShutter)
         default:
             return
         }

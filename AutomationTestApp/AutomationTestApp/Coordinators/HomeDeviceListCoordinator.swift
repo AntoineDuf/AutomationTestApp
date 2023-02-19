@@ -9,13 +9,13 @@ import UIKit
 
 final class HomeDeviceListCoordinator: Coordinator {
     private(set) var childCoordinators: [Coordinator] = []
-    
+
     private let navigationController: UINavigationController
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     func start() {
         navigationController.navigationBar.prefersLargeTitles = true
         let homeDeviceListViewController = HomeDeviceListViewController()
@@ -31,7 +31,14 @@ final class HomeDeviceListCoordinator: Coordinator {
         lightSteeringPageCoordinator.parentCoordinator = self
         lightSteeringPageCoordinator.start()
     }
-    
+
+    func startRollerSteeringPage(rollerShutter: RollerShutter) {
+        let rollerSteeringPageCoordinator = RollerSteeringPageCoordinator(navigationController: navigationController, rollerShutter: rollerShutter)
+        childCoordinators.append(rollerSteeringPageCoordinator)
+        rollerSteeringPageCoordinator.parentCoordinator = self
+        rollerSteeringPageCoordinator.start()
+    }
+
     func childDidFinish(_ childCoordinator: Coordinator) {
         if let index = childCoordinators.firstIndex(where: { coordinator -> Bool in
             return childCoordinator === coordinator
