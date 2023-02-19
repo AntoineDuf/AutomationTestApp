@@ -44,7 +44,7 @@ extension HomeDeviceListViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.identifier, for: indexPath) as! UserCell
             let user = viewModel.user
-            cell.configure(with: user!)
+            cell.configure(with: user)
             return cell
         }
         if indexPath.section == 1 {

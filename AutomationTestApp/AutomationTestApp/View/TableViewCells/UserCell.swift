@@ -28,7 +28,8 @@ class UserCell: UITableViewCell {
     }
     
     //MARK: - Methods
-    func configure(with user: User) {
+    func configure(with user: User?) {
+        guard let user = user else { return }
         let userName = "\(user.firstName) \(user.lastName)"
         let adress = "\(user.address.city) \(user.address.street)"
         nameLabel.text = userName
