@@ -41,6 +41,9 @@
 		71B5C90E29A2C77100B850BD /* LightSteeringPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C90D29A2C77100B850BD /* LightSteeringPageView.swift */; };
 		71B5C91029A2C78500B850BD /* HeaterSteeringPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C90F29A2C78500B850BD /* HeaterSteeringPageView.swift */; };
 		71B5C91229A2C82900B850BD /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91129A2C82900B850BD /* UIView+Ext.swift */; };
+		71B5C91429A2CF3500B850BD /* LightSteeringPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91329A2CF3500B850BD /* LightSteeringPageViewController.swift */; };
+		71B5C91629A2CF9900B850BD /* LightSteeringPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91529A2CF9900B850BD /* LightSteeringPageViewModel.swift */; };
+		71B5C91829A2D18700B850BD /* LightSteeringPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91729A2D18700B850BD /* LightSteeringPageCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +85,9 @@
 		71B5C90D29A2C77100B850BD /* LightSteeringPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSteeringPageView.swift; sourceTree = "<group>"; };
 		71B5C90F29A2C78500B850BD /* HeaterSteeringPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaterSteeringPageView.swift; sourceTree = "<group>"; };
 		71B5C91129A2C82900B850BD /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		71B5C91329A2CF3500B850BD /* LightSteeringPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSteeringPageViewController.swift; sourceTree = "<group>"; };
+		71B5C91529A2CF9900B850BD /* LightSteeringPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSteeringPageViewModel.swift; sourceTree = "<group>"; };
+		71B5C91729A2D18700B850BD /* LightSteeringPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSteeringPageCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,7 @@
 			children = (
 				71B5C8CD29A2A5D500B850BD /* AppCoordinator.swift */,
 				71B5C8CF29A2A60600B850BD /* HomeDeviceListCoordinator.swift */,
+				71B5C91729A2D18700B850BD /* LightSteeringPageCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -177,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				71B5C8D129A2A68200B850BD /* HomeDeviceListViewModel.swift */,
+				71B5C91529A2CF9900B850BD /* LightSteeringPageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				71B5C8D329A2A6A800B850BD /* HomeDeviceListViewController.swift */,
+				71B5C91329A2CF3500B850BD /* LightSteeringPageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -322,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71B5C91829A2D18700B850BD /* LightSteeringPageCoordinator.swift in Sources */,
 				71B5C8CE29A2A5D500B850BD /* AppCoordinator.swift in Sources */,
 				71B5C8D229A2A68200B850BD /* HomeDeviceListViewModel.swift in Sources */,
 				71B5C91229A2C82900B850BD /* UIView+Ext.swift in Sources */,
@@ -347,6 +357,8 @@
 				71B5C8D829A2AC2100B850BD /* Light.swift in Sources */,
 				71B5C8E629A2B0AB00B850BD /* LightCell.swift in Sources */,
 				71B5C8DA29A2AC3100B850BD /* RollerShutter.swift in Sources */,
+				71B5C91429A2CF3500B850BD /* LightSteeringPageViewController.swift in Sources */,
+				71B5C91629A2CF9900B850BD /* LightSteeringPageViewModel.swift in Sources */,
 				71B5C8D429A2A6A800B850BD /* HomeDeviceListViewController.swift in Sources */,
 				71B5C90C29A2C75E00B850BD /* RollerSteeringPageView.swift in Sources */,
 				71B5C8F829A2B21000B850BD /* DeviceIntensityLabel.swift in Sources */,
