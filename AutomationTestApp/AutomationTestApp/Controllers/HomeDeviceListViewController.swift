@@ -28,6 +28,19 @@ private extension HomeDeviceListViewController {
             guard let self = self else { return }
             self.tableView.reloadData()
         }
+        viewModel.goToNextControllerHandler = { [weak self] in
+            guard let self = self else { return }
+            switch self.viewModel.selectedDevice {
+            case is Light:
+                self.viewModel.coordinator?.startLightSteeringPage(light: self.viewModel.selectedDevice as! Light, delegate: self)
+            case is Heater:
+                self.viewModel.coordinator?.startHeaterSteeringPage(heater: self.viewModel.selectedDevice as! Heater, delegate: self)
+            case is RollerShutter:
+                self.viewModel.coordinator?.startRollerSteeringPage(rollerShutter: self.viewModel.selectedDevice as! RollerShutter, delegate: self)
+            default:
+                return
+            }
+        }
     }
 }
 
@@ -73,6 +86,31 @@ extension HomeDeviceListViewController: UITableViewDelegate {
             return
         }
         viewModel.didSelectDevice(section: indexPath.section - 1, indexPath: indexPath.row)
+    }
+}
+
+//MARK: - Other Controller Delegate
+extension HomeDeviceListViewController: RollerSteeringDelegate {
+    func updateData(rollerShutter: RollerShutter) {
+        if let index = viewModel.homeDevices[1].firstIndex(where: {$0.id == rollerShutter.id}) {
+               viewModel.homeDevices[1][index] = rollerShutter
+        }
+    }
+}
+
+extension HomeDeviceListViewController: LightSteeringDelegate {
+    func updateData(light: Light) {
+        if let index = viewModel.homeDevices[0].firstIndex(where: {$0.id == light.id}) {
+               viewModel.homeDevices[0][index] = light
+        }
+    }
+}
+
+extension HomeDeviceListViewController: HeaterSteeringDelegate {
+    func updateData(heater: Heater) {
+        if let index = viewModel.homeDevices[2].firstIndex(where: {$0.id == heater.id}) {
+               viewModel.homeDevices[2][index] = heater
+        }
     }
 }
 

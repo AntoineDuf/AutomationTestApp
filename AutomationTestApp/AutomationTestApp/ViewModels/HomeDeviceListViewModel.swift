@@ -14,6 +14,7 @@ final class HomeDeviceListViewModel {
     let dataService: DataService
     var coordinator: HomeDeviceListCoordinator?
     var reloadTableViewHandler: () -> Void = {}
+    var goToNextControllerHandler: () -> Void = {}
     var homeDevices: [[Deviceable]] {
         didSet {
             reloadTableViewHandler()
@@ -21,7 +22,7 @@ final class HomeDeviceListViewModel {
     }
     var selectedDevice: Deviceable? {
         didSet {
-            goToNextController()
+            goToNextControllerHandler()
         }
     }
 
@@ -49,18 +50,5 @@ final class HomeDeviceListViewModel {
 
     func didSelectDevice(section: Int, indexPath: Int) {
         selectedDevice = homeDevices[section][indexPath]
-    }
-
-    func goToNextController() {
-        switch selectedDevice {
-        case is Light:
-            coordinator?.startLightSteeringPage(light: selectedDevice as! Light)
-        case is RollerShutter:
-            coordinator?.startRollerSteeringPage(rollerShutter: selectedDevice as! RollerShutter)
-        case is Heater:
-            coordinator?.startHeaterSteeringPage(heater: selectedDevice as! Heater)
-        default:
-            return
-        }
     }
 }
