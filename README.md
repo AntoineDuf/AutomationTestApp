@@ -1,6 +1,7 @@
 # AutomationTestApp
 This is a technical test for an automation company.
-**The project consists to display home devices with a steering page for each device.
+
+The project consists to display home devices with a steering page for each device.
 
  1. Requirements :
  - must support iOS 14, with MVVM architecture, Multilanguage support.
