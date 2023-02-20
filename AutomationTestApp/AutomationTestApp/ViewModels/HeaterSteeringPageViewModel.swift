@@ -10,7 +10,18 @@ import Foundation
 final class HeaterSteeringPageViewModel {
     //MARK: - Properties
     var coordinator: HeaterSteeringPageCoordinator?
-    var heater: Heater
+    var reloadUIHandler: () -> Void = {}
+    var heater: Heater {
+        didSet {
+            reloadUIHandler()
+        }
+    }
+    var heaterIsOn: Bool {
+        heater.mode == "ON" ? true : false
+    }
+    var temperatureString: String {
+        heaterIsOn ? NSLocalizedString("onAt", comment: "") + " \(heater.temperature)°" : NSLocalizedString("off", comment: "")
+    }
 
     init(coordinator: HeaterSteeringPageCoordinator? = nil, heater: Heater) {
         self.coordinator = coordinator
@@ -23,16 +34,8 @@ final class HeaterSteeringPageViewModel {
         heater.mode = mode
     }
 
-    func setRoundTemperature(value: Float) -> Float {
-        roundf(value / 0.5) * 0.5
-    }
-
-    func updateTemperature(temperature: Float) {
-        heater.temperature = temperature
-    }
-
-    func temperatureStringAdapter(isOn: Bool, temperature: Float) -> String {
-        let string = isOn ? NSLocalizedString("onAt", comment: "") + " \(temperature)°" : NSLocalizedString("off", comment: "")
-        return string
+    func updateTemperature(value: Float) {
+        heater.mode = "ON"
+        heater.temperature = roundf(value / 0.5) * 0.5
     }
 }

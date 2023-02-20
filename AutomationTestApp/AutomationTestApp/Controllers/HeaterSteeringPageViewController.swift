@@ -24,6 +24,7 @@ class HeaterSteeringPageViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         setup()
         setControlEvent()
+        configureViewModel()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -32,39 +33,35 @@ class HeaterSteeringPageViewController: UIViewController {
         viewModel.coordinator?.didFinishLightSteeringPage()
     }
 
+    private func configureViewModel() {
+        viewModel.reloadUIHandler = { [weak self] in
+            guard let self = self else { return }
+            self.setSwitchAndTemperatureLabel()
+        }
+    }
+
     private func setSwitchAndTemperatureLabel() {
-            switch self.viewModel.heater.mode {
-            case "OFF":
-                self.steeringView.temperatureLabel.text = NSLocalizedString("off", comment: "")
-                self.steeringView.switchButton.setOn(false, animated: false)
-            default:
-                self.steeringView.temperatureLabel.text = NSLocalizedString("onAt", comment: "") + " \(self.viewModel.heater.temperature)°"
-                self.steeringView.switchButton.setOn(true, animated: false)
-            }
-    }
-
-    @objc func updatePositionLabel(sender: UISlider!) {
-        let temperature = viewModel.setRoundTemperature(value: sender.value)
-        self.viewModel.updateTemperature(temperature: temperature)
-        DispatchQueue.main.async {
-            self.steeringView.temperatureLabel.text = self.viewModel.temperatureStringAdapter(isOn: self.steeringView.switchButton.isOn, temperature: temperature)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.steeringView.switchButton.setOn(self.viewModel.heaterIsOn, animated: false)
+            self.steeringView.temperatureLabel.text = self.viewModel.temperatureString
         }
     }
 
-    @objc func switchUpdated(sender: UISwitch!) {
-        self.viewModel.updateMode(isOn: sender.isOn)
-        let temperature = viewModel.setRoundTemperature(value: steeringView.rollerSlider.value)
-        DispatchQueue.main.async {
-            self.steeringView.temperatureLabel.text = self.viewModel.temperatureStringAdapter(isOn: self.steeringView.switchButton.isOn, temperature: temperature)
-        }
+    @objc func sliderDidUpdate(sender: UISlider!) {
+        viewModel.updateTemperature(value: sender.value)
+    }
+
+    @objc func switchDidUpdate(sender: UISwitch!) {
+        viewModel.updateMode(isOn: sender.isOn)
     }
 }
 
 //MARK: - UserInteraction Event
 private extension HeaterSteeringPageViewController {
     func setControlEvent() {
-        steeringView.rollerSlider.addTarget(self, action: #selector(updatePositionLabel), for: .valueChanged)
-        steeringView.switchButton.addTarget(self, action: #selector(switchUpdated), for: .valueChanged)
+        steeringView.rollerSlider.addTarget(self, action: #selector(sliderDidUpdate), for: .valueChanged)
+        steeringView.switchButton.addTarget(self, action: #selector(switchDidUpdate), for: .valueChanged)
     }
 }
 
