@@ -24,26 +24,37 @@ class RollerSteeringPageViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         setup()
         setControlEvent()
+        configureViewModel()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        viewModel.rollerShutter.position = Int(steeringView.rollerSlider.value)
         delegate.updateData(rollerShutter: viewModel.rollerShutter)
         viewModel.coordinator?.didFinishLightSteeringPage()
     }
 
-    @objc func updatePositionLabel(sender: UISlider!) {
-        let value = Int(sender.value)
-        DispatchQueue.main.async {
-            self.steeringView.positionLabel.text = self.viewModel.devicePositionStringAdapter(position: value)
+    private func configureViewModel() {
+        viewModel.reloadUIHandler = { [weak self] in
+            guard let self = self else { return }
+            self.setPositionLabel()
         }
+    }
+
+    private func setPositionLabel() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.steeringView.positionLabel.text = self.viewModel.devicePositionStringAdapter()
+        }
+    }
+
+    @objc func sliderDidUpdate(sender: UISlider!) {
+        viewModel.updatePosition(value: sender.value)
     }
 }
 
 //MARK: - UserInteraction Event
 private extension RollerSteeringPageViewController {
     func setControlEvent() {
-        steeringView.rollerSlider.addTarget(self, action: #selector(updatePositionLabel), for: .allEvents)
+        steeringView.rollerSlider.addTarget(self, action: #selector(sliderDidUpdate), for: .allEvents)
     }
 }
 
@@ -53,7 +64,7 @@ private extension RollerSteeringPageViewController {
         view.backgroundColor = .systemGroupedBackground
         steeringView = RollerSterringPageView(contentView: view.layer.frame)
         steeringView.deviceNameLabel.text = viewModel.rollerShutter.deviceName
-        steeringView.positionLabel.text = self.viewModel.devicePositionStringAdapter(position: viewModel.rollerShutter.position)
+        setPositionLabel()
         steeringView.rollerSlider.maximumValue = 100
         steeringView.rollerSlider.minimumValue = 0
         steeringView.rollerSlider.value = Float(viewModel.rollerShutter.position)
