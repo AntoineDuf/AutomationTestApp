@@ -24,46 +24,44 @@ class LightSteeringPageViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         setup()
         setControlEvent()
+        configureViewModel()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        viewModel.light.intensity = Int(steeringView.rollerSlider.value)
         delegate.updateData(light: viewModel.light)
         viewModel.coordinator?.didFinishLightSteeringPage()
     }
-    
-    private func setSwitch() {
-        if viewModel.lightIsOn {
-            self.steeringView.switchButton.setOn(true, animated: false)
-            return
+
+    private func configureViewModel() {
+        viewModel.reloadUIHandler = { [weak self] in
+            guard let self = self else { return }
+            self.setSwitchAndIntensityLabel()
         }
-        self.steeringView.switchButton.setOn(false, animated: false)
     }
     
-    @objc func sliderUpdated(mySwitch: UISwitch) {
-        let intensityValue = mySwitch.isOn ? 50 : 0
+    private func setSwitchAndIntensityLabel() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.steeringView.switchButton.setOn(self.viewModel.lightIsOn, animated: false)
+            self.steeringView.intensityLabel.text = self.viewModel.deviceIntensityString
+        }
+    }
+    
+    @objc func switchDidUpdate(mySwitch: UISwitch) {
         viewModel.updateMode(isOn: mySwitch.isOn)
-        DispatchQueue.main.async {
-            self.steeringView.rollerSlider.value = Float(intensityValue)
-            self.steeringView.intensityLabel.text = self.viewModel.deviceIntensityStringAdapter(position: intensityValue)
-        }
     }
     
-    @objc func updatePositionState(sender: UISlider!) {
-        DispatchQueue.main.async {
-            self.steeringView.intensityLabel.text = self.viewModel.deviceIntensityStringAdapter(position: Int(sender.value))
-            self.steeringView.switchButton.setOn(true, animated: false)
-            self.viewModel.light.mode = "ON"
-        }
+    @objc func sliderDidUpdate(sender: UISlider!) {
+        viewModel.updateIntensity(value: sender.value)
     }
 }
 
 //MARK: - UserInteraction Event
 private extension LightSteeringPageViewController {
     func setControlEvent() {
-        steeringView.rollerSlider.addTarget(self, action: #selector(updatePositionState), for: .valueChanged)
-        steeringView.switchButton.addTarget(self, action: #selector(sliderUpdated), for:UIControl.Event.valueChanged)
+        steeringView.rollerSlider.addTarget(self, action: #selector(sliderDidUpdate), for: .valueChanged)
+        steeringView.switchButton.addTarget(self, action: #selector(switchDidUpdate), for:UIControl.Event.valueChanged)
     }
 }
 
@@ -73,8 +71,8 @@ private extension LightSteeringPageViewController {
         view.backgroundColor = .systemGroupedBackground
         steeringView = LightSteeringPageView()
         steeringView.deviceNameLabel.text = viewModel.light.deviceName
-        steeringView.intensityLabel.text = viewModel.deviceIntensityStringAdapter(position: viewModel.light.intensity)
-        setSwitch()
+        setSwitchAndIntensityLabel()
+
         steeringView.rollerSlider.maximumValue = 100
         steeringView.rollerSlider.minimumValue = 0
         steeringView.rollerSlider.value = Float(viewModel.light.intensity)

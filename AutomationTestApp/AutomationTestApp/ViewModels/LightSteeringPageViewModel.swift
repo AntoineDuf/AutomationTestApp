@@ -10,9 +10,17 @@ import Foundation
 final class LightSteeringPageViewModel {
     //MARK: - Properties
     var coordinator: LightSteeringPageCoordinator?
-    var light: Light
+    var reloadUIHandler: () -> Void = {}
+    var light: Light {
+        didSet {
+            reloadUIHandler()
+        }
+    }
     var lightIsOn: Bool {
         light.mode == "ON" ? true : false
+    }
+    var deviceIntensityString: String {
+        lightIsOn ? NSLocalizedString("lightingAt", comment: "") + " \(light.intensity)%" : NSLocalizedString("off", comment: "")
     }
 
     init(coordinator: LightSteeringPageCoordinator? = nil, light: Light) {
@@ -24,16 +32,10 @@ final class LightSteeringPageViewModel {
         let mode = isOn ? "ON" : "OFF"
         light.mode = mode
     }
-
-    func deviceIntensityStringAdapter(position: Int) -> String {
-        if light.mode == "OFF" {
-            return NSLocalizedString("off", comment: "")
-        } else {
-            if position == 100 {
-                return NSLocalizedString("on", comment: "")
-            }
-            return NSLocalizedString("lightingAt", comment: "") + " \(position)%"
-        }
+    
+    func updateIntensity(value: Float) {
+        light.mode = "ON"
+        light.intensity = Int(value)
     }
 }
 

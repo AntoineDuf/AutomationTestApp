@@ -39,7 +39,7 @@ class LightCell: UITableViewCell {
     }
 
     private func deviceIntensityStringAdapter(position: Int, mode: String) -> String {
-        if position == 100 || mode == "OFF" {
+        if mode == "OFF" {
             return ""
         }
         return NSLocalizedString("lightingAt", comment: "") + " \(position)%"
