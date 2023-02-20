@@ -11,6 +11,7 @@ The project consists to display home devices with a steering page for each devic
  - keep the devices update in the app life cycle with visual update.
 
 **2. What i would improve with more time on this test :**
+ - do some refacto between ViewModels Steering page and ViewControllers steering page do update each view.
  - implement the code and do some refactor to perform mocking, fetching to make UnitTests.
  - add comment in the project.
  - improve UI (design and code efficiency).
