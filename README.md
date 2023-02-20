@@ -14,3 +14,4 @@ The project consists to display home devices with a steering page for each devic
  - implement the code and do some refactor to perform mocking, fetching to make UnitTests.
  - add comment in the project.
  - improve UI (design and code efficiency).
+ - investigate on "invalid mode 'kCFRunLoopCommonModes'" error on log (it seems to be a log noise of UIKit).
