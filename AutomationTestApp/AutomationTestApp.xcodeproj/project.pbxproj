@@ -81,7 +81,7 @@
 		71B5C8F729A2B21000B850BD /* DeviceIntensityLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIntensityLabel.swift; sourceTree = "<group>"; };
 		71B5C8F929A2B22F00B850BD /* DeviceModeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModeLabel.swift; sourceTree = "<group>"; };
 		71B5C8FB29A2B29D00B850BD /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
-		71B5C8FD29A2B45800B850BD /* HomeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = HomeData.json; path = ../../../HomeData.json; sourceTree = "<group>"; };
+		71B5C8FD29A2B45800B850BD /* HomeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeData.json; sourceTree = "<group>"; };
 		71B5C90129A2B58C00B850BD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		71B5C90329A2B59500B850BD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		71B5C90529A2B5AD00B850BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
