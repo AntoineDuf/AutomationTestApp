@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		717823C929A7816100E388CB /* HomeDeviceListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717823C829A7816100E388CB /* HomeDeviceListViewModelTests.swift */; };
+		717823CB29A7817300E388CB /* LightSteeringPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717823CA29A7817300E388CB /* LightSteeringPageViewModelTests.swift */; };
+		717823CD29A7818300E388CB /* RollerSteeringPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717823CC29A7818300E388CB /* RollerSteeringPageViewModelTests.swift */; };
+		717823CF29A7819300E388CB /* HeaterSteeringPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717823CE29A7819300E388CB /* HeaterSteeringPageViewModelTests.swift */; };
 		71B5C8B129A2A3BD00B850BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C8B029A2A3BD00B850BD /* AppDelegate.swift */; };
 		71B5C8B329A2A3BD00B850BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C8B229A2A3BD00B850BD /* SceneDelegate.swift */; };
 		71B5C8BA29A2A3C000B850BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71B5C8B929A2A3C000B850BD /* Assets.xcassets */; };
@@ -52,7 +56,22 @@
 		71B5C92429A2DDA200B850BD /* HeaterSteeringPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C92329A2DDA200B850BD /* HeaterSteeringPageViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		717823C329A780BA00E388CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71B5C8A529A2A3BD00B850BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71B5C8AC29A2A3BD00B850BD;
+			remoteInfo = AutomationTestApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		717823BF29A780B900E388CB /* AutomationTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutomationTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		717823C829A7816100E388CB /* HomeDeviceListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDeviceListViewModelTests.swift; sourceTree = "<group>"; };
+		717823CA29A7817300E388CB /* LightSteeringPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSteeringPageViewModelTests.swift; sourceTree = "<group>"; };
+		717823CC29A7818300E388CB /* RollerSteeringPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerSteeringPageViewModelTests.swift; sourceTree = "<group>"; };
+		717823CE29A7819300E388CB /* HeaterSteeringPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaterSteeringPageViewModelTests.swift; sourceTree = "<group>"; };
 		71B5C8AD29A2A3BD00B850BD /* AutomationTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutomationTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71B5C8B029A2A3BD00B850BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71B5C8B229A2A3BD00B850BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +122,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		717823BC29A780B900E388CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71B5C8AA29A2A3BD00B850BD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,10 +139,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		717823C029A780BA00E388CB /* AutomationTestAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				717823C829A7816100E388CB /* HomeDeviceListViewModelTests.swift */,
+				717823CA29A7817300E388CB /* LightSteeringPageViewModelTests.swift */,
+				717823CC29A7818300E388CB /* RollerSteeringPageViewModelTests.swift */,
+				717823CE29A7819300E388CB /* HeaterSteeringPageViewModelTests.swift */,
+			);
+			path = AutomationTestAppTests;
+			sourceTree = "<group>";
+		};
 		71B5C8A429A2A3BD00B850BD = {
 			isa = PBXGroup;
 			children = (
 				71B5C8AF29A2A3BD00B850BD /* AutomationTestApp */,
+				717823C029A780BA00E388CB /* AutomationTestAppTests */,
 				71B5C8AE29A2A3BD00B850BD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				71B5C8AD29A2A3BD00B850BD /* AutomationTestApp.app */,
+				717823BF29A780B900E388CB /* AutomationTestAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -279,6 +318,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		717823BE29A780B900E388CB /* AutomationTestAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 717823C729A780BA00E388CB /* Build configuration list for PBXNativeTarget "AutomationTestAppTests" */;
+			buildPhases = (
+				717823BB29A780B900E388CB /* Sources */,
+				717823BC29A780B900E388CB /* Frameworks */,
+				717823BD29A780B900E388CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				717823C429A780BA00E388CB /* PBXTargetDependency */,
+			);
+			name = AutomationTestAppTests;
+			productName = AutomationTestAppTests;
+			productReference = 717823BF29A780B900E388CB /* AutomationTestAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		71B5C8AC29A2A3BD00B850BD /* AutomationTestApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71B5C8C129A2A3C000B850BD /* Build configuration list for PBXNativeTarget "AutomationTestApp" */;
@@ -306,6 +363,10 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					717823BE29A780B900E388CB = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = 71B5C8AC29A2A3BD00B850BD;
+					};
 					71B5C8AC29A2A3BD00B850BD = {
 						CreatedOnToolsVersion = 14.0;
 					};
@@ -326,11 +387,19 @@
 			projectRoot = "";
 			targets = (
 				71B5C8AC29A2A3BD00B850BD /* AutomationTestApp */,
+				717823BE29A780B900E388CB /* AutomationTestAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		717823BD29A780B900E388CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71B5C8AB29A2A3BD00B850BD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,6 +414,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		717823BB29A780B900E388CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				717823CB29A7817300E388CB /* LightSteeringPageViewModelTests.swift in Sources */,
+				717823CD29A7818300E388CB /* RollerSteeringPageViewModelTests.swift in Sources */,
+				717823C929A7816100E388CB /* HomeDeviceListViewModelTests.swift in Sources */,
+				717823CF29A7819300E388CB /* HeaterSteeringPageViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71B5C8A929A2A3BD00B850BD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -393,6 +473,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		717823C429A780BA00E388CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71B5C8AC29A2A3BD00B850BD /* AutomationTestApp */;
+			targetProxy = 717823C329A780BA00E388CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		71B5C8BB29A2A3C000B850BD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -415,6 +503,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		717823C529A780BA00E388CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 73HJ4V6TMH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.training.AutomationTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AutomationTestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AutomationTestApp";
+			};
+			name = Debug;
+		};
+		717823C629A780BA00E388CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 73HJ4V6TMH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.training.AutomationTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AutomationTestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AutomationTestApp";
+			};
+			name = Release;
+		};
 		71B5C8BF29A2A3C000B850BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -594,6 +718,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		717823C729A780BA00E388CB /* Build configuration list for PBXNativeTarget "AutomationTestAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				717823C529A780BA00E388CB /* Debug */,
+				717823C629A780BA00E388CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		71B5C8A829A2A3BD00B850BD /* Build configuration list for PBXProject "AutomationTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
