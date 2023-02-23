@@ -8,10 +8,10 @@
 import UIKit
 
 protocol RollerSteeringDelegate {
-    func updateData(rollerShutter: RollerShutter)
+    func updateData(rollerShutter: Deviceable)
 }
 
-class RollerSteeringPageViewController: UIViewController {
+final class RollerSteeringPageViewController: UIViewController {
 
     //MARK: - Properties
     var delegate: RollerSteeringDelegate!
@@ -42,7 +42,7 @@ class RollerSteeringPageViewController: UIViewController {
     private func setPositionLabel() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.steeringView.positionLabel.text = self.viewModel.devicePositionStringAdapter()
+            self.steeringView.positionLabel.text = self.viewModel.devicePositionStringAdapter
         }
     }
 

@@ -11,7 +11,7 @@ final class HeaterSteeringPageViewModel {
     //MARK: - Properties
     var coordinator: HeaterSteeringPageCoordinator?
     var reloadUIHandler: () -> Void = {}
-    var heater: Heater {
+    private(set) var heater: Heater {
         didSet {
             reloadUIHandler()
         }

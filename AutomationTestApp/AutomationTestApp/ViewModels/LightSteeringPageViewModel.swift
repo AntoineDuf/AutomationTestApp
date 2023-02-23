@@ -11,7 +11,7 @@ final class LightSteeringPageViewModel {
     //MARK: - Properties
     var coordinator: LightSteeringPageCoordinator?
     var reloadUIHandler: () -> Void = {}
-    var light: Light {
+    private(set) var light: Light {
         didSet {
             reloadUIHandler()
         }

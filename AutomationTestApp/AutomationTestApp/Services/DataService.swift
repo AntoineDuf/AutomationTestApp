@@ -8,12 +8,13 @@
 import Foundation
 
 final class DataService {
+    private let ressourcePath: String
     let deviceAdapter = DataAdapter()
     let decoder = JSONDecoder()
     
     func getData() -> HomeData? {
         guard
-            let url = Bundle.main.url(forResource: "HomeData", withExtension: "json"),
+            let url = Bundle.main.url(forResource: ressourcePath, withExtension: "json"),
             let data = try? Data(contentsOf: url),
             let homeData = try? decoder.decode(HomeData.self, from: data)
         else {
@@ -60,6 +61,10 @@ final class DataService {
             return homeDevice
         }
         return nil
+    }
+    
+    init(ressourcePath: String = "HomeData") {
+        self.ressourcePath = ressourcePath
     }
 }
 

@@ -8,10 +8,10 @@
 import UIKit
 
 protocol HeaterSteeringDelegate {
-    func updateData(heater: Heater)
+    func updateData(heater: Deviceable)
 }
 
-class HeaterSteeringPageViewController: UIViewController {
+final class HeaterSteeringPageViewController: UIViewController {
     
     //MARK: - Properties
     var delegate: HeaterSteeringDelegate!

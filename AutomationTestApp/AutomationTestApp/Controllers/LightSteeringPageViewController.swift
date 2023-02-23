@@ -8,10 +8,10 @@
 import UIKit
 
 protocol LightSteeringDelegate {
-    func updateData(light: Light)
+    func updateData(light: Deviceable)
 }
 
-class LightSteeringPageViewController: UIViewController {
+final class LightSteeringPageViewController: UIViewController {
     
     //MARK: - Properties
     var delegate: LightSteeringDelegate!

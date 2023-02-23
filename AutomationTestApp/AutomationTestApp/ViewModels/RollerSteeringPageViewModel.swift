@@ -11,9 +11,20 @@ final class RollerSteeringPageViewModel {
     //MARK: - Properties
     var coordinator: RollerSteeringPageCoordinator?
     var reloadUIHandler: () -> Void = {}
-    var rollerShutter: RollerShutter {
+    private(set) var rollerShutter: RollerShutter {
         didSet {
             reloadUIHandler()
+        }
+    }
+
+    var devicePositionStringAdapter: String {
+        switch rollerShutter.position {
+        case 0:
+            return NSLocalizedString("closed", comment: "")
+        case 100:
+            return NSLocalizedString("opened", comment: "")
+        default:
+            return NSLocalizedString("openedAt", comment: "") + " \(rollerShutter.position)%"
         }
     }
 
@@ -25,16 +36,5 @@ final class RollerSteeringPageViewModel {
     //MARK: - Methods
     func updatePosition(value: Float) {
         rollerShutter.position = Int(value)
-    }
-
-    func devicePositionStringAdapter() -> String {
-        switch rollerShutter.position {
-        case 0:
-            return NSLocalizedString("closed", comment: "")
-        case 100:
-            return NSLocalizedString("opened", comment: "")
-        default:
-            return NSLocalizedString("openedAt", comment: "") + " \(rollerShutter.position)%"
-        }
     }
 }

@@ -47,7 +47,7 @@ private extension HomeDeviceListViewController {
 //MARK: - TableViewDataSource
 extension HomeDeviceListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        viewModel.sectionCount() + 1
+        viewModel.sectionCount + 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.rowCount(section: section)
@@ -91,26 +91,20 @@ extension HomeDeviceListViewController: UITableViewDelegate {
 
 //MARK: - Other Controller Delegate
 extension HomeDeviceListViewController: RollerSteeringDelegate {
-    func updateData(rollerShutter: RollerShutter) {
-        if let index = viewModel.homeDevices[1].firstIndex(where: {$0.id == rollerShutter.id}) {
-               viewModel.homeDevices[1][index] = rollerShutter
-        }
+    func updateData(rollerShutter: Deviceable) {
+        viewModel.updateDevice(device: rollerShutter)
     }
 }
 
 extension HomeDeviceListViewController: LightSteeringDelegate {
-    func updateData(light: Light) {
-        if let index = viewModel.homeDevices[0].firstIndex(where: {$0.id == light.id}) {
-               viewModel.homeDevices[0][index] = light
-        }
+    func updateData(light: Deviceable) {
+        viewModel.updateDevice(device: light)
     }
 }
 
 extension HomeDeviceListViewController: HeaterSteeringDelegate {
-    func updateData(heater: Heater) {
-        if let index = viewModel.homeDevices[2].firstIndex(where: {$0.id == heater.id}) {
-               viewModel.homeDevices[2][index] = heater
-        }
+    func updateData(heater: Deviceable) {
+        viewModel.updateDevice(device: heater)
     }
 }
 
