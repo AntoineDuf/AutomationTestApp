@@ -11,9 +11,9 @@ The project consists to display home devices with a steering page for each devic
  - keep the devices update in the app life cycle with visual update.
 
 **2. What i would improve with more time on this test :**
- - **add UnitTEst on all Models and ViewModels (during the week).**
+ - test all the coordinators.
+ - add of CoreData or Realm to save data even after a restart of the app.
  - add RxSwift in the project.
- - implement the code and do some refactor to perform mocking, fetching to make UnitTests.
  - add comment in the project.
- - improve UI (design and code efficiency).
+ - improve UI (design).
  - investigate on "invalid mode 'kCFRunLoopCommonModes'" error on log (it seems to be a log noise of UIKit).
