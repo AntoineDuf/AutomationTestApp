@@ -118,7 +118,7 @@ final class HomeDeviceListViewModelTests: XCTestCase {
         let roller = viewModel.homeDevices[1].first as! RollerShutter
         XCTAssertEqual(roller.position, 70)
 
-        // When user update a roller on lightSteeringPage
+        // When user update a roller on rollerSteeringPage
         viewModel.updateDevice(device: RollerShutter(id: 2, deviceName: "Volet roulant - Salon", productType: "RollerShutter", position: 100))
         
         // Then roller must be update in homeDevice.
@@ -132,10 +132,10 @@ final class HomeDeviceListViewModelTests: XCTestCase {
         let heater = viewModel.homeDevices[2].first as! Heater
         XCTAssertEqual(heater.temperature, 20)
 
-        // When user update a roller on lightSteeringPage
+        // When user update a roller on heaterSteeringPage
         viewModel.updateDevice(device: Heater(id: 3, deviceName: "Radiateur - Chambre", productType: "Heater", temperature: 20, mode: "ON"))
         
-        // Then roller must be update in homeDevice.
+        // Then heater must be update in homeDevice.
         let heaterUpdated = viewModel.homeDevices[2].first as! Heater
         XCTAssertEqual(heaterUpdated.mode, "ON")
     }

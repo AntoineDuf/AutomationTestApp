@@ -70,10 +70,10 @@ final class HeaterSteeringPageViewModelTests: XCTestCase {
     func testUserUseSlider() {
         // Given heaterSteeringPage did Load with intensity heater at 19.
         
-        // When user use switchButton to turn OFF the light.
+        // When user use switchButton to turn OFF the heater.
         viewModel.updateTemperature(value: 25.40)
         
-        // Then mode property on light object must be OFF
+        // Then mode property on heater object must be OFF
         XCTAssertEqual(viewModel.heater.temperature, 25.5)
 
     }
