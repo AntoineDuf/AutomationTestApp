@@ -25,18 +25,18 @@ final class HomeDeviceListViewModelTests: XCTestCase {
     
     private func viewModelInstantiation() {
         dataService = DataService()
-        viewModel = HomeDeviceListViewModel(dataService: dataService)
+        viewModel = HomeDeviceListViewModel(dataService: DataService(urlSession: MockURLSession(completionHandler: (FakeResponseData.correctData, FakeResponseData.responseOK, nil))))
     }
-    
     func testHomePageDidLoad() {
-        
         // Given viewController has been instantiate.
         let expectation = self.expectation(description: "test")
         viewModel.reloadTableViewHandler = {
             
             // Then User and HomeDevices properties must contain object.
             XCTAssertNotNil(self.viewModel.user)
-            XCTAssertEqual(self.viewModel.homeDevices.count, 3)
+            XCTAssertEqual(self.viewModel.lights.count, 4)
+            XCTAssertEqual(self.viewModel.rollers.count, 4)
+            XCTAssertEqual(self.viewModel.heaters.count, 4)
             expectation.fulfill()
         }
         
@@ -44,99 +44,98 @@ final class HomeDeviceListViewModelTests: XCTestCase {
         viewModel.loadData()
         waitForExpectations(timeout: 1, handler: nil)
     }
-    
+
     func testHomePageDidLoadWithErrorLoadData() {
-        
-        // Given viewController has been instantiate.
-        viewModel = HomeDeviceListViewModel(dataService: DataService(ressourcePath: "WrongFilePath"))
+
+        // Given viewController has been instantiate with failed network request.
+        viewModel = HomeDeviceListViewModel(dataService: DataService(urlSession: MockURLSession(completionHandler: (nil, FakeResponseData.responseKO, nil))))
         let expectation = self.expectation(description: "test")
         viewModel.reloadTableViewHandler = {
-            
-            // Then User and HomeDevices properties must contain object.
+
+            // Then User and HomeDevices properties must be empty.
             XCTAssertNil(self.viewModel.user)
-            XCTAssertEqual(self.viewModel.homeDevices.count, 0)
+            XCTAssertEqual(self.viewModel.lights.count, 0)
+            XCTAssertEqual(self.viewModel.heaters.count, 0)
+            XCTAssertEqual(self.viewModel.rollers.count, 0)
             expectation.fulfill()
         }
-        
+
         // When LoadData method is call
         viewModel.loadData()
         waitForExpectations(timeout: 1, handler: nil)
     }
-    
+
     func testTableViewLoading() {
         // Given viewController has been instantiate.
         let expectation = self.expectation(description: "test")
         viewModel.reloadTableViewHandler = {
-            
+
             // Then sectionCount and rowCount methods must return proper Int.
-            XCTAssertEqual(self.viewModel.sectionCount, 3)
+            XCTAssertEqual(self.viewModel.sectionCount, 4)
             XCTAssertEqual(self.viewModel.rowCount(section: 0), 1)
             XCTAssertEqual(self.viewModel.rowCount(section: 1), 4)
             XCTAssertEqual(self.viewModel.rowCount(section: 2), 4)
             XCTAssertEqual(self.viewModel.rowCount(section: 3), 4)
+            XCTAssertEqual(self.viewModel.rowCount(section: 4), 0)
             expectation.fulfill()
         }
-        
+
         // When LoadData method is call
         viewModel.loadData()
         waitForExpectations(timeout: 1, handler: nil)
     }
 
-    func testUserSelectADevice() {
+    func testUserSelectALight() {
         // Given viewController has been instantiate and devices are loaded.
         viewModel.loadData()
-        
+
         let expectation = self.expectation(description: "test")
         viewModel.goToNextControllerHandler = {
-            
-            // Then selectedDevice property is not nil.
+
+            // Then selectedDevice property is not nil and must be a Light object.
             XCTAssertNotNil(self.viewModel.selectedDevice)
+            XCTAssert(self.viewModel.selectedDevice is Light)
             expectation.fulfill()
         }
-        
-        // When user select a device.
+
+        // When user select a light device.
         viewModel.didSelectDevice(section: 1, indexPath: 0)
         waitForExpectations(timeout: 1, handler: nil)
     }
 
-    func testUserUpdateDeviceOnLightSteeringPage() {
+    func testUserSelectARoller() {
         // Given viewController has been instantiate and devices are loaded.
         viewModel.loadData()
-        let light = viewModel.homeDevices[0].first as! Light
-        XCTAssertEqual(light.intensity, 50)
-        // When user update a light on lightSteeringPage
-        viewModel.updateDevice(device: Light(id: 1, deviceName: "Lampe - Cuisine", productType: "Light", intensity: 10, mode: "ON"))
-        
-        // Then light must be update in homeDevice.
-        let lightUpdated = viewModel.homeDevices[0].first as! Light
-        XCTAssertEqual(lightUpdated.intensity, 10)
+
+        let expectation = self.expectation(description: "test")
+        viewModel.goToNextControllerHandler = {
+
+            // Then selectedDevice property is not nil and must be a RollerShutter object.
+            XCTAssertNotNil(self.viewModel.selectedDevice)
+            XCTAssert(self.viewModel.selectedDevice is RollerShutter)
+            expectation.fulfill()
+        }
+
+        // When user select a device.
+        viewModel.didSelectDevice(section: 2, indexPath: 0)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 
-    func testUserUpdateDeviceOnRollerSteeringPage() {
+    func testUserSelectAHeater() {
         // Given viewController has been instantiate and devices are loaded.
         viewModel.loadData()
-        let roller = viewModel.homeDevices[1].first as! RollerShutter
-        XCTAssertEqual(roller.position, 70)
 
-        // When user update a roller on rollerSteeringPage
-        viewModel.updateDevice(device: RollerShutter(id: 2, deviceName: "Volet roulant - Salon", productType: "RollerShutter", position: 100))
-        
-        // Then roller must be update in homeDevice.
-        let rollerUpdated = viewModel.homeDevices[1].first as! RollerShutter
-        XCTAssertEqual(rollerUpdated.position, 100)
-    }
+        let expectation = self.expectation(description: "test")
+        viewModel.goToNextControllerHandler = {
 
-    func testUserUpdateDeviceOnHeaterSteeringPage() {
-        // Given viewController has been instantiate and devices are loaded.
-        viewModel.loadData()
-        let heater = viewModel.homeDevices[2].first as! Heater
-        XCTAssertEqual(heater.temperature, 20)
+            // Then selectedDevice property is not nil and must be a Heater object.
+            XCTAssertNotNil(self.viewModel.selectedDevice)
+            XCTAssert(self.viewModel.selectedDevice is Heater)
+            expectation.fulfill()
+        }
 
-        // When user update a roller on heaterSteeringPage
-        viewModel.updateDevice(device: Heater(id: 3, deviceName: "Radiateur - Chambre", productType: "Heater", temperature: 20, mode: "ON"))
-        
-        // Then heater must be update in homeDevice.
-        let heaterUpdated = viewModel.homeDevices[2].first as! Heater
-        XCTAssertEqual(heaterUpdated.mode, "ON")
+        // When user select a device.
+        viewModel.didSelectDevice(section: 3, indexPath: 0)
+        waitForExpectations(timeout: 1, handler: nil)
     }
 }
