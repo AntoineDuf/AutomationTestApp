@@ -7,11 +7,18 @@
 
 import Foundation
 
-struct Light: Deviceable {
+final class Light: Deviceable {
     let id: Int
     let deviceName: String
     let productType: String
     var intensity: Int
     var mode: String
-}
 
+    init(id: Int, deviceName: String, productType: String, intensity: Int, mode: String) {
+        self.id = id
+        self.deviceName = deviceName
+        self.productType = productType
+        self.intensity = intensity
+        self.mode = mode
+    }
+}

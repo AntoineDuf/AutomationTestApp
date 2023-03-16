@@ -12,14 +12,14 @@ final class HomeDeviceListViewModel {
     //MARK: - Properties
     private(set) var user: User?
     let dataService: DataService
-    var coordinator: HomeDeviceListCoordinator?
+    var coordinatorDelegate: GoToNextControllersDelegate?
+    private let dataAdapter = DataAdapter()
     var reloadTableViewHandler: () -> Void = {}
     var goToNextControllerHandler: () -> Void = {}
-    private(set) var homeDevices: [[Deviceable]] {
-        didSet {
-            reloadTableViewHandler()
-        }
-    }
+    private(set) var lights = [Light]()
+    private(set) var rollers = [RollerShutter]()
+    private(set) var heaters = [Heater]()
+
     private(set) var selectedDevice: Deviceable? {
         didSet {
             goToNextControllerHandler()
@@ -27,47 +27,76 @@ final class HomeDeviceListViewModel {
     }
 
     var sectionCount: Int {
-        homeDevices.count
+        4
     }
 
-    init(homeDevices: [[Deviceable]] = [], dataService: DataService = .init()) {
-        self.homeDevices = homeDevices
+    init(dataService: DataService = DataService()) {
         self.dataService = dataService
     }
 
     //MARK: - Methods
     func loadData() {
-        user = dataService.getUser()
-        homeDevices = dataService.getDevice() ?? []
+        dataService.getData { result in
+            switch result {
+            case .success(let homeData):
+                self.adapteHomeData(homeData: homeData)
+            case .failure(let error):
+                // TODO manage the display of the error
+                print(error)
+                self.reloadTableViewHandler()
+            }
+        }
     }
+        
 
     func rowCount(section: Int) -> Int {
-        if section == 0 {
-            return 1
+        switch section {
+        case 0:
+            return user != nil ? 1 : 0
+        case 1:
+            return lights.count
+        case 2:
+            return rollers.count
+        case 3:
+            return heaters.count
+        default:
+            return 0
         }
-        return homeDevices[section - 1].count
     }
 
     func didSelectDevice(section: Int, indexPath: Int) {
-        selectedDevice = homeDevices[section][indexPath]
-    }
-
-    func updateDevice(device: Deviceable) {
-        switch device {
-        case is Light:
-            if let index = homeDevices[0].firstIndex(where: {$0.id == device.id}) {
-                   homeDevices[0][index] = device
-            }
-        case is RollerShutter:
-            if let index = homeDevices[1].firstIndex(where: {$0.id == device.id}) {
-                   homeDevices[1][index] = device
-            }
-        case is Heater:
-            if let index = homeDevices[2].firstIndex(where: {$0.id == device.id}) {
-                   homeDevices[2][index] = device
-            }
+        switch section {
+        case 1:
+            selectedDevice = lights[indexPath]
+        case 2:
+            selectedDevice = rollers[indexPath]
+        case 3:
+            selectedDevice = heaters[indexPath]
         default:
             return
         }
+    }
+
+    private func adapteHomeData(homeData: HomeData) {
+        user = homeData.user
+        for device in homeData.devices {
+            switch device.productType {
+            case "Light":
+                if let light = dataAdapter.lightAdapter(device: device) {
+                    lights.append(light)
+                }
+            case "RollerShutter":
+                if let roller = dataAdapter.rollerAdapter(device: device) {
+                    rollers.append(roller)
+                }
+            case "Heater":
+                if let heater = dataAdapter.heaterAdapter(device: device) {
+                    heaters.append(heater)
+                }
+            default:
+                return
+            }
+        }
+        reloadTableViewHandler()
     }
 }

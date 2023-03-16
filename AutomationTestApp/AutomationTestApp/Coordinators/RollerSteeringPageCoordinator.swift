@@ -13,7 +13,7 @@ final class RollerSteeringPageCoordinator: Coordinator {
     private let rollerShutter: RollerShutter
     private let delegate: UIViewController
 
-    var parentCoordinator : HomeDeviceListCoordinator?
+    var parentCoordinatorDelegate: BackToPreviousViewControllerDelegate?
 
     init(navigationController: UINavigationController, rollerShutter: RollerShutter, delegate: UIViewController) {
         self.navigationController = navigationController
@@ -25,12 +25,12 @@ final class RollerSteeringPageCoordinator: Coordinator {
         let rollerSteeringPageViewController = RollerSteeringPageViewController()
         let rollerSteeringPageViewModel = RollerSteeringPageViewModel(coordinator: self, rollerShutter: rollerShutter)
         rollerSteeringPageViewController.viewModel = rollerSteeringPageViewModel
-        rollerSteeringPageViewController.delegate = delegate as? any RollerSteeringDelegate
+        rollerSteeringPageViewController.delegate = delegate as? any HomeControllerDelegate
         navigationController.pushViewController(rollerSteeringPageViewController, animated: false)
     }
 
     func didFinishLightSteeringPage() {
-        parentCoordinator?.childDidFinish(self)
+        parentCoordinatorDelegate?.childDidFinish(self)
     }
 }
 

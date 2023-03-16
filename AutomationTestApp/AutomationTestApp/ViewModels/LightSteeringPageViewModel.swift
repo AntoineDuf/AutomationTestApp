@@ -11,11 +11,8 @@ final class LightSteeringPageViewModel {
     //MARK: - Properties
     var coordinator: LightSteeringPageCoordinator?
     var reloadUIHandler: () -> Void = {}
-    private(set) var light: Light {
-        didSet {
-            reloadUIHandler()
-        }
-    }
+    private(set) var light: Light
+
     var lightIsOn: Bool {
         light.mode == "ON" ? true : false
     }
@@ -31,11 +28,13 @@ final class LightSteeringPageViewModel {
     func updateMode(isOn: Bool) {
         let mode = isOn ? "ON" : "OFF"
         light.mode = mode
+        reloadUIHandler()
     }
     
     func updateIntensity(value: Float) {
         light.mode = "ON"
         light.intensity = Int(value)
+        reloadUIHandler()
     }
 }
 

@@ -13,7 +13,7 @@ final class HeaterSteeringPageCoordinator: Coordinator {
     private let heater: Heater
     private let delegate: UIViewController
     
-    var parentCoordinator : HomeDeviceListCoordinator?
+    var parentCoordinatorDelegate: BackToPreviousViewControllerDelegate?
 
     init(navigationController: UINavigationController, heater: Heater, delegate: UIViewController) {
         self.navigationController = navigationController
@@ -25,12 +25,12 @@ final class HeaterSteeringPageCoordinator: Coordinator {
         let heaterSteeringPageViewController = HeaterSteeringPageViewController()
         let heaterSteeringPageViewModel = HeaterSteeringPageViewModel(coordinator: self, heater: heater)
         heaterSteeringPageViewController.viewModel = heaterSteeringPageViewModel
-        heaterSteeringPageViewController.delegate = delegate as? any HeaterSteeringDelegate
+        heaterSteeringPageViewController.delegate = delegate as? any HomeControllerDelegate
         navigationController.pushViewController(heaterSteeringPageViewController, animated: false)
     }
     
     func didFinishLightSteeringPage() {
-        parentCoordinator?.childDidFinish(self)
+        parentCoordinatorDelegate?.childDidFinish(self)
     }
 }
 

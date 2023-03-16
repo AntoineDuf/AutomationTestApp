@@ -7,10 +7,18 @@
 
 import Foundation
 
-struct Heater: Deviceable {
-    var id: Int
-    var deviceName: String
-    var productType: String
+final class Heater: Deviceable {
+    let id: Int
+    let deviceName: String
+    let productType: String
     var temperature: Float
     var mode: String
+
+    init(id: Int, deviceName: String, productType: String, temperature: Float, mode: String) {
+        self.id = id
+        self.deviceName = deviceName
+        self.productType = productType
+        self.temperature = temperature
+        self.mode = mode
+    }
 }

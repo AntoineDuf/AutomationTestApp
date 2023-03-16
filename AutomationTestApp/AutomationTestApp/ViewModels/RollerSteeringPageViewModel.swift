@@ -11,11 +11,7 @@ final class RollerSteeringPageViewModel {
     //MARK: - Properties
     var coordinator: RollerSteeringPageCoordinator?
     var reloadUIHandler: () -> Void = {}
-    private(set) var rollerShutter: RollerShutter {
-        didSet {
-            reloadUIHandler()
-        }
-    }
+    private(set) var rollerShutter: RollerShutter 
 
     var devicePositionStringAdapter: String {
         switch rollerShutter.position {
@@ -36,5 +32,6 @@ final class RollerSteeringPageViewModel {
     //MARK: - Methods
     func updatePosition(value: Float) {
         rollerShutter.position = Int(value)
+        reloadUIHandler()
     }
 }

@@ -11,11 +11,8 @@ final class HeaterSteeringPageViewModel {
     //MARK: - Properties
     var coordinator: HeaterSteeringPageCoordinator?
     var reloadUIHandler: () -> Void = {}
-    private(set) var heater: Heater {
-        didSet {
-            reloadUIHandler()
-        }
-    }
+    private(set) var heater: Heater
+
     var heaterIsOn: Bool {
         heater.mode == "ON" ? true : false
     }
@@ -32,10 +29,12 @@ final class HeaterSteeringPageViewModel {
     func updateMode(isOn: Bool) {
         let mode = isOn ? "ON" : "OFF"
         heater.mode = mode
+        reloadUIHandler()
     }
 
     func updateTemperature(value: Float) {
         heater.mode = "ON"
         heater.temperature = roundf(value / 0.5) * 0.5
+        reloadUIHandler()
     }
 }

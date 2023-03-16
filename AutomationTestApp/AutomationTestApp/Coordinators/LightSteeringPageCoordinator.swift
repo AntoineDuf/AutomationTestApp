@@ -13,7 +13,7 @@ final class LightSteeringPageCoordinator: Coordinator {
     private let light: Light
     private let delegate: UIViewController
     
-    var parentCoordinator : HomeDeviceListCoordinator?
+    var parentCoordinatorDelegate: BackToPreviousViewControllerDelegate?
 
     init(navigationController: UINavigationController, light: Light, delegate: UIViewController) {
         self.navigationController = navigationController
@@ -25,12 +25,12 @@ final class LightSteeringPageCoordinator: Coordinator {
         let lightSteeringPageViewController = LightSteeringPageViewController()
         let lightSteeringPageViewModel = LightSteeringPageViewModel(coordinator: self, light: light)
         lightSteeringPageViewController.viewModel = lightSteeringPageViewModel
-        lightSteeringPageViewController.delegate = delegate as? any LightSteeringDelegate
+        lightSteeringPageViewController.delegate = delegate as? any HomeControllerDelegate
         navigationController.pushViewController(lightSteeringPageViewController, animated: false)
     }
     
     func didFinishLightSteeringPage() {
-        parentCoordinator?.childDidFinish(self)
+        parentCoordinatorDelegate?.childDidFinish(self)
     }
 }
 
