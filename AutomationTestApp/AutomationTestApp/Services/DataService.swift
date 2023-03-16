@@ -8,63 +8,36 @@
 import Foundation
 
 final class DataService {
-    private let ressourcePath: String
-    let deviceAdapter = DataAdapter()
-    let decoder = JSONDecoder()
-    
-    func getData() -> HomeData? {
-        guard
-            let url = Bundle.main.url(forResource: ressourcePath, withExtension: "json"),
-            let data = try? Data(contentsOf: url),
-            let homeData = try? decoder.decode(HomeData.self, from: data)
-        else {
-            return nil
-        }
-        return homeData
+    private let urlSession: URLSessionProtocol
+    private let decoder = JSONDecoder()
+
+    init(urlSession: URLSessionProtocol = URLSession.init(configuration: .default)) {
+        self.urlSession = urlSession
     }
-    
-    
-    func getUser() -> User? {
-        if let homeData = getData() {
-            return homeData.user
-        }
-        return nil
-    }
-    
-    func getDevice() -> [[Deviceable]]? {
-        if let homeData = getData() {
-            var lights = [Light]()
-            var rollers = [RollerShutter]()
-            var heaters = [Heater]()
-            for device in homeData.devices {
-                switch device.productType {
-                case "Light":
-                    if let light = deviceAdapter.lightAdapter(device: device) {
-                        lights.append(light)
-                    }
-                case "RollerShutter":
-                    if let roller = deviceAdapter.rollerAdapter(device: device) {
-                        rollers.append(roller)
-                    }
-                case "Heater":
-                    if let heater = deviceAdapter.heaterAdapter(device: device) {
-                        heaters.append(heater)
-                    }
-                default:
-                    return nil
+
+    func getData(completion: @escaping (Result<HomeData, NetworkError>) -> Void) {
+        if let url = URL(string: "http://storage42.com/modulotest/data.json") {
+            urlSession.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    completion(.failure(.transportError(error)))
+                    return
                 }
-            }
-            var homeDevice = [[Deviceable]]()
-            homeDevice.append(lights)
-            homeDevice.append(rollers)
-            homeDevice.append(heaters)
-            return homeDevice
+                if let response = response as? HTTPURLResponse, !(200...299).contains(response.statusCode) {
+                    completion(.failure(.serverError(statusCode: response.statusCode)))
+                    return
+                }
+                guard let data = data else {
+                    completion(.failure(.noData))
+                    return
+                }
+                do {
+                    let homeData = try self.decoder.decode(HomeData.self, from: data)
+                    completion(.success(homeData))
+                } catch {
+                    completion(.failure(.decodingError(error)))
+                }
+            }.resume()
         }
-        return nil
-    }
-    
-    init(ressourcePath: String = "HomeData") {
-        self.ressourcePath = ressourcePath
     }
 }
 
