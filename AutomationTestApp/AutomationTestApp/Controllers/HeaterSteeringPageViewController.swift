@@ -7,14 +7,10 @@
 
 import UIKit
 
-protocol HeaterSteeringDelegate {
-    func updateData(heater: Deviceable)
-}
-
 final class HeaterSteeringPageViewController: UIViewController {
     
     //MARK: - Properties
-    var delegate: HeaterSteeringDelegate!
+    var delegate: HomeControllerDelegate!
     var viewModel: HeaterSteeringPageViewModel!
     var steeringView: HeaterSteeringPageView!
 
@@ -29,7 +25,7 @@ final class HeaterSteeringPageViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        delegate.updateData(heater: viewModel.heater)
+        delegate.realoadDataDisplay()
         viewModel.coordinator?.didFinishLightSteeringPage()
     }
 
@@ -48,11 +44,11 @@ final class HeaterSteeringPageViewController: UIViewController {
         }
     }
 
-    @objc func sliderDidUpdate(sender: UISlider!) {
+    @objc func sliderDidUpdate(sender: UISlider) {
         viewModel.updateTemperature(value: sender.value)
     }
 
-    @objc func switchDidUpdate(sender: UISwitch!) {
+    @objc func switchDidUpdate(sender: UISwitch) {
         viewModel.updateMode(isOn: sender.isOn)
     }
 }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HomeControllerDelegate {
+    func realoadDataDisplay()
+}
+
 final class HomeDeviceListViewController: UIViewController {
     
     //MARK: - Properties
@@ -25,20 +29,21 @@ final class HomeDeviceListViewController: UIViewController {
 private extension HomeDeviceListViewController {
     func configureViewModel() {
         viewModel.reloadTableViewHandler = { [weak self] in
-            guard let self = self else { return }
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.tableView.reloadData()
+            }
         }
         viewModel.goToNextControllerHandler = { [weak self] in
             guard let self = self else { return }
-            switch self.viewModel.selectedDevice {
-            case is Light:
-                self.viewModel.coordinator?.startLightSteeringPage(light: self.viewModel.selectedDevice as! Light, delegate: self)
-            case is Heater:
-                self.viewModel.coordinator?.startHeaterSteeringPage(heater: self.viewModel.selectedDevice as! Heater, delegate: self)
-            case is RollerShutter:
-                self.viewModel.coordinator?.startRollerSteeringPage(rollerShutter: self.viewModel.selectedDevice as! RollerShutter, delegate: self)
-            default:
-                return
+            if let light = self.viewModel.selectedDevice as? Light {
+                self.viewModel.coordinatorDelegate?.startLightSteeringPage(light: light, delegate: self)
+            }
+            if let heater = self.viewModel.selectedDevice as? Heater {
+                self.viewModel.coordinatorDelegate?.startHeaterSteeringPage(heater: heater, delegate: self)
+            }
+            if let rollerShutter = self.viewModel.selectedDevice as? RollerShutter {
+                self.viewModel.coordinatorDelegate?.startRollerSteeringPage(rollerShutter: rollerShutter, delegate: self)
             }
         }
     }
@@ -47,34 +52,32 @@ private extension HomeDeviceListViewController {
 //MARK: - TableViewDataSource
 extension HomeDeviceListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        viewModel.sectionCount + 1
+        viewModel.sectionCount
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.rowCount(section: section)
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.identifier, for: indexPath) as! UserCell
+            let cell = UserCell(style: .default, reuseIdentifier: UserCell.identifier)
             let user = viewModel.user
             cell.configure(with: user)
             return cell
         }
         if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: LightCell.identifier, for: indexPath) as! LightCell
-            let lights = viewModel.homeDevices[indexPath.section - 1]
-            cell.configure(with: lights[indexPath.row] as! Light)
+            let cell = LightCell(style: .default, reuseIdentifier: LightCell.identifier)
+            cell.configure(with: viewModel.lights[indexPath.row])
             return cell
         }
         if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: RollerCell.identifier, for: indexPath) as! RollerCell
-            let rollers = viewModel.homeDevices[indexPath.section - 1]
-            cell.configure(with: rollers[indexPath.row] as! RollerShutter)
+            let cell = RollerCell(style: .default, reuseIdentifier: RollerCell.identifier)
+            cell.configure(with: viewModel.rollers[indexPath.row])
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: HeaterCell.identifier, for: indexPath) as! HeaterCell
-        let heaters = viewModel.homeDevices[indexPath.section - 1]
-        cell.configure(with: heaters[indexPath.row] as! Heater)
+        let cell = HeaterCell(style: .default, reuseIdentifier: HeaterCell.identifier)
+        cell.configure(with: viewModel.heaters[indexPath.row])
         return cell
     }
 }
@@ -85,26 +88,15 @@ extension HomeDeviceListViewController: UITableViewDelegate {
         if indexPath.section == 0 {
             return
         }
-        viewModel.didSelectDevice(section: indexPath.section - 1, indexPath: indexPath.row)
+        viewModel.didSelectDevice(section: indexPath.section, indexPath: indexPath.row)
     }
 }
 
-//MARK: - Other Controller Delegate
-extension HomeDeviceListViewController: RollerSteeringDelegate {
-    func updateData(rollerShutter: Deviceable) {
-        viewModel.updateDevice(device: rollerShutter)
-    }
-}
-
-extension HomeDeviceListViewController: LightSteeringDelegate {
-    func updateData(light: Deviceable) {
-        viewModel.updateDevice(device: light)
-    }
-}
-
-extension HomeDeviceListViewController: HeaterSteeringDelegate {
-    func updateData(heater: Deviceable) {
-        viewModel.updateDevice(device: heater)
+extension HomeDeviceListViewController: HomeControllerDelegate {
+    func realoadDataDisplay() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 

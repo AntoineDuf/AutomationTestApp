@@ -7,14 +7,10 @@
 
 import UIKit
 
-protocol LightSteeringDelegate {
-    func updateData(light: Deviceable)
-}
-
 final class LightSteeringPageViewController: UIViewController {
     
     //MARK: - Properties
-    var delegate: LightSteeringDelegate!
+    var delegate: HomeControllerDelegate!
     var viewModel: LightSteeringPageViewModel!
     var steeringView: LightSteeringPageView!
     
@@ -29,7 +25,7 @@ final class LightSteeringPageViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        delegate.updateData(light: viewModel.light)
+        delegate.realoadDataDisplay()
         viewModel.coordinator?.didFinishLightSteeringPage()
     }
 
@@ -52,7 +48,7 @@ final class LightSteeringPageViewController: UIViewController {
         viewModel.updateMode(isOn: mySwitch.isOn)
     }
     
-    @objc func sliderDidUpdate(sender: UISlider!) {
+    @objc func sliderDidUpdate(sender: UISlider) {
         viewModel.updateIntensity(value: sender.value)
     }
 }

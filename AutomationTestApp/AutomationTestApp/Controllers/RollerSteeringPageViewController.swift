@@ -7,14 +7,10 @@
 
 import UIKit
 
-protocol RollerSteeringDelegate {
-    func updateData(rollerShutter: Deviceable)
-}
-
 final class RollerSteeringPageViewController: UIViewController {
 
     //MARK: - Properties
-    var delegate: RollerSteeringDelegate!
+    var delegate: HomeControllerDelegate!
     var steeringView: RollerSterringPageView!
     var viewModel: RollerSteeringPageViewModel!
 
@@ -28,7 +24,7 @@ final class RollerSteeringPageViewController: UIViewController {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        delegate.updateData(rollerShutter: viewModel.rollerShutter)
+        delegate.realoadDataDisplay()
         viewModel.coordinator?.didFinishLightSteeringPage()
     }
 
@@ -46,7 +42,7 @@ final class RollerSteeringPageViewController: UIViewController {
         }
     }
 
-    @objc func sliderDidUpdate(sender: UISlider!) {
+    @objc func sliderDidUpdate(sender: UISlider) {
         viewModel.updatePosition(value: sender.value)
     }
 }
