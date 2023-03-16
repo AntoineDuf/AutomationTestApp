@@ -54,6 +54,13 @@
 		71B5C92029A2DD3500B850BD /* HeaterSteeringPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C91F29A2DD3500B850BD /* HeaterSteeringPageCoordinator.swift */; };
 		71B5C92229A2DD7600B850BD /* HeaterSteeringPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C92129A2DD7600B850BD /* HeaterSteeringPageViewModel.swift */; };
 		71B5C92429A2DDA200B850BD /* HeaterSteeringPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5C92329A2DDA200B850BD /* HeaterSteeringPageViewController.swift */; };
+		71D4667A29C2969600AD1242 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4667929C2969600AD1242 /* NetworkError.swift */; };
+		71D4667C29C296C200AD1242 /* URLSession+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4667B29C296C200AD1242 /* URLSession+Ext.swift */; };
+		71F3C2BC29C1FA6700C212F4 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3C2BB29C1FA6700C212F4 /* URLProtocolMock.swift */; };
+		71F3C2BE29C201B400C212F4 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3C2BD29C201B400C212F4 /* FakeResponseData.swift */; };
+		71F3C2C029C2045200C212F4 /* DataServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3C2BF29C2045200C212F4 /* DataServiceTests.swift */; };
+		71F3C2C429C26EB000C212F4 /* IncorrectData.json in Resources */ = {isa = PBXBuildFile; fileRef = 71F3C2C329C26EB000C212F4 /* IncorrectData.json */; };
+		71F3C2C529C2713100C212F4 /* IncorrectData.json in Resources */ = {isa = PBXBuildFile; fileRef = 71F3C2C329C26EB000C212F4 /* IncorrectData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +126,12 @@
 		71B5C91F29A2DD3500B850BD /* HeaterSteeringPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaterSteeringPageCoordinator.swift; sourceTree = "<group>"; };
 		71B5C92129A2DD7600B850BD /* HeaterSteeringPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaterSteeringPageViewModel.swift; sourceTree = "<group>"; };
 		71B5C92329A2DDA200B850BD /* HeaterSteeringPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaterSteeringPageViewController.swift; sourceTree = "<group>"; };
+		71D4667929C2969600AD1242 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		71D4667B29C296C200AD1242 /* URLSession+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Ext.swift"; sourceTree = "<group>"; };
+		71F3C2BB29C1FA6700C212F4 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
+		71F3C2BD29C201B400C212F4 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		71F3C2BF29C2045200C212F4 /* DataServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTests.swift; sourceTree = "<group>"; };
+		71F3C2C329C26EB000C212F4 /* IncorrectData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = IncorrectData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +155,7 @@
 		717823C029A780BA00E388CB /* AutomationTestAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				71F3C2BA29C1FA4C00C212F4 /* Services */,
 				717823C829A7816100E388CB /* HomeDeviceListViewModelTests.swift */,
 				717823CA29A7817300E388CB /* LightSteeringPageViewModelTests.swift */,
 				717823CC29A7818300E388CB /* RollerSteeringPageViewModelTests.swift */,
@@ -181,7 +195,6 @@
 				71B5C8B029A2A3BD00B850BD /* AppDelegate.swift */,
 				71B5C8B229A2A3BD00B850BD /* SceneDelegate.swift */,
 				71B5C8B929A2A3C000B850BD /* Assets.xcassets */,
-				71B5C8FD29A2B45800B850BD /* HomeData.json */,
 				71B5C8BB29A2A3C000B850BD /* LaunchScreen.storyboard */,
 				71B5C8BE29A2A3C000B850BD /* Info.plist */,
 				71B5C90429A2B59500B850BD /* Localizable.strings */,
@@ -206,6 +219,8 @@
 			children = (
 				71B5C8DD29A2ADE800B850BD /* DataService.swift */,
 				71B5C8DF29A2AE6D00B850BD /* DataAdapter.swift */,
+				71D4667929C2969600AD1242 /* NetworkError.swift */,
+				71D4667B29C296C200AD1242 /* URLSession+Ext.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -315,6 +330,18 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		71F3C2BA29C1FA4C00C212F4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				71F3C2BB29C1FA6700C212F4 /* URLProtocolMock.swift */,
+				71F3C2BD29C201B400C212F4 /* FakeResponseData.swift */,
+				71F3C2BF29C2045200C212F4 /* DataServiceTests.swift */,
+				71B5C8FD29A2B45800B850BD /* HomeData.json */,
+				71F3C2C329C26EB000C212F4 /* IncorrectData.json */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -397,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71F3C2C429C26EB000C212F4 /* IncorrectData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71F3C2C529C2713100C212F4 /* IncorrectData.json in Resources */,
 				71B5C8BD29A2A3C000B850BD /* LaunchScreen.storyboard in Resources */,
 				71B5C90229A2B59500B850BD /* Localizable.strings in Resources */,
 				71B5C8BA29A2A3C000B850BD /* Assets.xcassets in Resources */,
@@ -420,8 +449,11 @@
 			files = (
 				717823CB29A7817300E388CB /* LightSteeringPageViewModelTests.swift in Sources */,
 				717823CD29A7818300E388CB /* RollerSteeringPageViewModelTests.swift in Sources */,
+				71F3C2C029C2045200C212F4 /* DataServiceTests.swift in Sources */,
 				717823C929A7816100E388CB /* HomeDeviceListViewModelTests.swift in Sources */,
+				71F3C2BC29C1FA6700C212F4 /* URLProtocolMock.swift in Sources */,
 				717823CF29A7819300E388CB /* HeaterSteeringPageViewModelTests.swift in Sources */,
+				71F3C2BE29C201B400C212F4 /* FakeResponseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,10 +470,12 @@
 				71B5C90E29A2C77100B850BD /* LightSteeringPageView.swift in Sources */,
 				71B5C8FC29A2B29D00B850BD /* UIStackView+Ext.swift in Sources */,
 				71B5C8FA29A2B22F00B850BD /* DeviceModeLabel.swift in Sources */,
+				71D4667A29C2969600AD1242 /* NetworkError.swift in Sources */,
 				71B5C8B329A2A3BD00B850BD /* SceneDelegate.swift in Sources */,
 				71B5C8EC29A2B10100B850BD /* UserCell.swift in Sources */,
 				71B5C8EA29A2B0D200B850BD /* HeaterCell.swift in Sources */,
 				71B5C90729A2C6C200B850BD /* NameSteeringPageLabel.swift in Sources */,
+				71D4667C29C296C200AD1242 /* URLSession+Ext.swift in Sources */,
 				71B5C92229A2DD7600B850BD /* HeaterSteeringPageViewModel.swift in Sources */,
 				71B5C8DC29A2AC3F00B850BD /* Heater.swift in Sources */,
 				71B5C8F629A2B20000B850BD /* DeviceNameLabel.swift in Sources */,

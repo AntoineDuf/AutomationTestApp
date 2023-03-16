@@ -20,7 +20,6 @@ class RollerSterringPageView: UIStackView {
     init(contentView: CGRect) {
         super.init(frame: .zero)
         self.contentView = contentView
-        self.contentView = contentView
         setup()
     }
     
